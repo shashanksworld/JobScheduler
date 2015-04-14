@@ -6,10 +6,12 @@ import java.nio.charset.Charset;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 public class Processor {
 
 	public static void main(String args[])
@@ -19,16 +21,12 @@ public class Processor {
 		Processor pro=new Processor();
 		String jobString=pro.readJobData();
 		System.out.println(jobString);
-		try {
-			JSONObject jobdata=new JSONObject(jobString);
-			System.out.println("#### Object Created###");
-			System.out.println(jobdata.get("Machine"));
-			String s=jobdata.get("Machine").toString();
-			showMsg((new JSONObject(s)).get("count").toString());
+		JSONArray jobArray=(JSONArray) convertString2JSON(jobString,"Jobs");
+		ArrayList<Job> jobList=pro.createJobListFromJSONObject(jobArray);
+		
+		for(Job jobs : jobList)
+		{
 			
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		//Create Java Structure from Data Source
 		//Allocate Job
@@ -66,4 +64,34 @@ public class Processor {
 		System.out.println(s);
 	}
 	
+	public static Object convertString2JSON(String jString,String element)
+	{
+		JSONObject jobdata=null;
+		try {
+			jobdata=new JSONObject(jString);
+			showMsg("#### Object Created###");
+			System.out.println(jobdata.get(element));
+			Object jObj=jobdata.get(element);
+			
+			if(jObj instanceof org.json.JSONArray)
+				return (org.json.JSONArray)jObj;
+			else if(jObj instanceof org.json.JSONObject)
+					return (org.json.JSONObject)jObj;
+			
+			/*String s=jobdata.get("Jobs").toString();
+			showMsg(jobdata.get("Jobs").getClass().toString());*/
+			
+			
+			//showMsg((new JSONObject(s)).get("count").toString());
+		
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		return jobdata;
+	}
+	public ArrayList<Job> createJobListFromJSONObject(JSONArray jobList)
+	{
+			return null;
+	}
 }
