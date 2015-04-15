@@ -4,16 +4,24 @@
   },
   "Jobs":[
     {"id":0,
+    	"start":0,
+    	"finish":3,
       "duration":3
       },
       {"id":0,
-      "duration":1
+      "start":2,
+      "finish":6,
+      "duration":4
       },
       {"id":0,
-      "duration":5
+      "start":5,
+      "finish":8,
+      "duration":3
       },
       {"id":0,
-      "duration":2
+      "start":4,
+      "finish":8,
+      "duration":4
       }
     ]
 }

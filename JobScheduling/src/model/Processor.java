@@ -7,6 +7,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import org.json.JSONArray;
@@ -26,12 +27,19 @@ public class Processor {
 		
 		for(Job jobs : jobList)
 		{
-			
+			System.out.println(jobs);
 		}
 		//Create Java Structure from Data Source
 		//Allocate Job
 		
+		showMsg("sorting jobs based on finish time");
+		Collections.sort(jobList, new JobFinishComparator());
 		
+		
+		for(Job jobs : jobList)
+		{
+			System.out.println(jobs);
+		}
 	}
 	
 	public String readJobData()
@@ -70,7 +78,7 @@ public class Processor {
 		try {
 			jobdata=new JSONObject(jString);
 			showMsg("#### Object Created###");
-			System.out.println(jobdata.get(element));
+			//System.out.println(jobdata.get(element));
 			Object jObj=jobdata.get(element);
 			
 			if(jObj instanceof org.json.JSONArray)
@@ -92,6 +100,38 @@ public class Processor {
 	}
 	public ArrayList<Job> createJobListFromJSONObject(JSONArray jobList)
 	{
-			return null;
+			int i=0;
+			ArrayList<Job> jobArrayList=new ArrayList<Job>();
+			try {
+				
+					
+				while(i<jobList.length())
+				{	
+					
+					int duration=Integer.parseInt(((JSONObject) jobList.get(i)).get("duration").toString());
+					int start=Integer.parseInt(((JSONObject) jobList.get(i)).get("start").toString());
+					int finish=Integer.parseInt(((JSONObject) jobList.get(i)).get("finish").toString());
+					jobArrayList.add(new Job(i,start,finish,duration));
+					i++;
+					
+				}
+			} catch (NumberFormatException | JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
+			return jobArrayList;
 	}
+	public ArrayList<Machine> CreateMachineArray(int m)
+	{
+		ArrayList<Machine> machineList= new ArrayList<Machine>();
+			for(int i=0;i<m;i++)
+			{
+				ArrayList<Job> machienList;
+				machineList.add(new Machine(i, 0, 0, null));
+			}
+				
+		return machineList;
+	}
+	
 }
