@@ -23,12 +23,12 @@ class Job  {
 	/**
 	 * Instantiates a new job.
 	 *
-	 * @param id the id
-	 * @param offset the offset
-	 * @param inset the inset
-	 * @param duration the duration
+	 * @param id the jobId
+	 * @param offset the end time for a job
+	 * @param inset the start time for job
+	 * @param duration of a job element [offset-inset]
 	 */
-	public Job(int id, int offset, int inset, int duration) {
+	public Job(int id,  int inset,int offset, int duration) {
 		super();
 		this.id = id;
 		this.offset = offset;
@@ -43,7 +43,7 @@ class Job  {
 	
 	public String toString()
 	{
-		return "id: "+this.id+" ||inset:"+this.inset+"|| offset: "+this.offset+" ||duration:"+this.duration;
+		return "[id:"+this.id+",St:"+this.inset+",Ft:"+this.offset+"]";
 	}
 
 	public int getId() {

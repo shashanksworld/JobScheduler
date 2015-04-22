@@ -1,65 +1,63 @@
 {
   "Machine":{
-      "count":5
+      "count":4
   },
   "Jobs":[
     {"id":0,
-    	"start":0,
-    	"finish":1,
+    	"start":3,
+    	"finish":5,
       "duration":1
       },
       {"id":1,
-      "start":0,
-      "finish":3,
+      "start":2,
+      "finish":4,
       "duration":3
       },
       {"id":2,
-      "start":2,
-      "finish":3,
+      "start":0,
+      "finish":7,
       "duration":1
       },
       {"id":3,
       "start":2,
-      "finish":3,
+      "finish":4,
       "duration":1
       },
       {"id":4,
-      "start":2,
-      "finish":5,
+      "start":5,
+      "finish":8,
       "duration":3
       },
       {"id":5,
-      "start":2,
-      "finish":4,
+      "start":1,
+      "finish":3,
       "duration":2
       },
       {"id":6,
-      "start":3,
-      "finish":5,
-      "duration":2
-      },
-      {"id":7,
       "start":4,
       "finish":6,
       "duration":2
       },
+      {"id":7,
+      "start":7,
+      "finish":10,
+      "duration":2
+      },
       {"id":8,
       "start":9,
-      "finish":14,
+      "finish":11,
       "duration":2
       },
       {"id":9,
       "start":12,
-      "finish":15,
+      "finish":13,
       "duration":2
       },
       {"id":10,
-      "start":15,
-      "finish":17,
+      "start":13,
+      "finish":15,
       "duration":2
       }      
-            
-            
-            
+                                   
     ]
-}
+} 	
